@@ -257,6 +257,7 @@ MonoBehaviour:
   thrustForce: 5
   maxSpeed: 3
   uiDocument: {fileID: 1181329725}
+  explosionEffect: {fileID: 5899066321047528981, guid: 4f1ab7748b2df344992a834aa8e3da13, type: 3}
   boosterFlame: {fileID: 2139515867}
 --- !u!1 &202134501
 GameObject:
@@ -2096,6 +2097,7 @@ MonoBehaviour:
   thrustForce: 1
   maxSpeed: 5
   uiDocument: {fileID: 0}
+  explosionEffect: {fileID: 0}
   boosterFlame: {fileID: 0}
 --- !u!212 &2139515870
 SpriteRenderer:
