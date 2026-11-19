@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public UIDocument uiDocument;
     private Label scoreText;
+    private Button restartButton;
     public GameObject explosionEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,9 +22,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
+        restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
+        restartButton.style.display = DisplayStyle.None;
+        restartButton.clicked += ReloadScene;
     }
 
     // Update is called once per frame
+    public GameObject boosterFlame;
     void Update()
     {
         elapsedTime += Time.deltaTime;
@@ -32,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
 
         if (Mouse.current.leftButton.isPressed)
-
         {
             boosterFlame.SetActive(true);
         }
@@ -60,7 +65,13 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(explosionEffect, transform.position, transform.rotation);
+        restartButton.style.display = DisplayStyle.Flex;
     }
-    public GameObject boosterFlame;
+
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 }
